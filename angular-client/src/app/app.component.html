@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon>store</mat-icon>
+  </button>
+  <span>E-Commerce Platform</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/customers" routerLinkActive="active">Customers</button>
+  <button mat-button routerLink="/products" routerLinkActive="active">Products</button>
+  <button mat-button routerLink="/bills" routerLinkActive="active">Bills</button>
+</mat-toolbar>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
