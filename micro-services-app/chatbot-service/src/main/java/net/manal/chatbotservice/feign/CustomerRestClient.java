@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "CUSTOMER-SERVICE")
+@FeignClient(name = "CUSTOMER-SERVICE", url = "http://localhost:8081/api")
 public interface CustomerRestClient {
     @GetMapping("/customers")
     String getAllCustomers(); // Returning String (JSON) for RAG context

@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "BILLING-SERVICE")
+@FeignClient(name = "BILLING-SERVICE", url = "http://localhost:8083/api")
 public interface BillRestClient {
     @GetMapping("/bills")
     String getAllBills();

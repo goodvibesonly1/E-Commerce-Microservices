@@ -26,32 +26,37 @@ public class BillingServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BillingServiceApplication.class, args);
 	}
+
 	@Bean
-	CommandLineRunner commandLineRunner(BillRepository  billRepository,
-										ProductItemRepository productItemRepository,
-										CustomerRestClient customerRestClient,
-										ProductRestClient productRestClient){
+	CommandLineRunner commandLineRunner(BillRepository billRepository,
+			ProductItemRepository productItemRepository,
+			CustomerRestClient customerRestClient,
+			ProductRestClient productRestClient) {
 
 		return args -> {
-			Collection<Customer> customers = customerRestClient.getAllCustomers().getContent();
-			Collection<Product> products = productRestClient.getAllProducts().getContent();
+			try {
+				Collection<Customer> customers = customerRestClient.getAllCustomers().getContent();
+				Collection<Product> products = productRestClient.getAllProducts().getContent();
 
-			customers.forEach(customer -> {
-				Bill bill = Bill.builder()
-						.billingDate(new Date())
-						.customerId(customer.getId())
-						.build();
-				billRepository.save(bill);
-				products.forEach(product -> {
-					ProductItem productItem = ProductItem.builder()
-							.bill(bill)
-							.productId(product.getId())
-							.quantity(1+new Random().nextInt(10))
-							.unitPrice(product.getPrice())
+				customers.forEach(customer -> {
+					Bill bill = Bill.builder()
+							.billingDate(new Date())
+							.customerId(customer.getId())
 							.build();
-					productItemRepository.save(productItem);
+					billRepository.save(bill);
+					products.forEach(product -> {
+						ProductItem productItem = ProductItem.builder()
+								.bill(bill)
+								.productId(product.getId())
+								.quantity(1 + new Random().nextInt(10))
+								.unitPrice(product.getPrice())
+								.build();
+						productItemRepository.save(productItem);
+					});
 				});
-			});
+			} catch (Exception e) {
+				System.err.println("Warning: Could not initialize Billing data automatically: " + e.getMessage());
+			}
 		};
 	}
 
