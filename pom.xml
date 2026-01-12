@@ -9,7 +9,7 @@
         <version>3.3.5</version>
         <relativePath/>
     </parent>
-    <groupId>net.moaad</groupId>
+    <groupId>net.manal</groupId>
     <artifactId>ecom-ii-bdcc-app</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -20,8 +20,8 @@
     
     <developers>
         <developer>
-            <name>moaad</name>
-            <email>soordeam0@gmail.com</email>
+            <name>manal</name>
+            <email>manal.lhamdi2@gmail.com</email>
         </developer>
     </developers>
 

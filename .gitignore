@@ -63,3 +63,7 @@ Thumbs.db
 
 # Documentation (keep local only)
 docs/
+
+# Kafka (large binary files)
+kafka/
+kafka_*.tgz
